@@ -1,0 +1,25 @@
+application:
+  version: 0.0.1
+server:
+  port: 3456
+spring:
+  application:
+    name: demo-jdbc
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://localhost:3307/demo_jdbc_db?autoReconnect=true&useSSL=false&useTimezone=true&serverTimezone=${TZ:America/Mexico_City}&useLegacyDatetimeCode=false"
+    username: "root"
+    password: "my-secret-pw"
+    dbcp2:
+      validation-query: SELECT 1
+    hikari:
+      maximum-pool-size: "${MAXIMUM_POOL_SIZE:10}"
+  jpa:
+    show-sql: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    validate-on-migrate: false
+    placeholderReplacement: false
+  main:
+    allow-bean-definition-overriding: true
